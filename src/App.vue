@@ -78,7 +78,7 @@ import GridContainer from './components/GridContainer.vue';
 
 <template>
   <Header></Header>
-  <GridContainer>
+  <GridContainer class="mt-10">
     <Card v-for="item in items"
     :img="item.img"
     :title="item.title"
