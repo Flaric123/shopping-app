@@ -1,10 +1,10 @@
 <template>
-    <div class="col-span-4 flex flex-col gap-3 text-fg rounded-xl">
-        <img class="w-full aspect-[3/4] mb-[20px]" :src="img"/>
-        <div class="w-full flex flex-row justify-between">
+    <div class="col-span-4 h-max flex flex-col gap-3 text-fg rounded-xl">
+        <img class="w-full aspect-[3/4]" :src="img"/>
+        <div class="w-full flex flex-row justify-between items-center">
             <p class="text-2xl text-primary">{{ price }} $</p>
             <div class="w-max h-max flex flex-row gap-2">
-                <img class="aspect-square w-[15px]" src="../assets/dollar.svg"/>
+                <img class="aspect-square w-[15px]" src="../assets/star.svg"/>
                 <p class="text-xs text-primary">{{rating}}</p>
             </div>
         </div>
