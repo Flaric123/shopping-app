@@ -1,17 +1,18 @@
 <template>
-    <div class="col-span-4 h-max flex flex-col gap-3 text-fg rounded-xl">
-        <img class="w-full aspect-[3/4]" :src="img"/>
-        <div class="w-full flex flex-row justify-between items-center">
-            <p class="text-2xl text-primary">{{ price }} $</p>
-            <div class="w-max h-max flex flex-row gap-2">
-                <img class="aspect-square w-[15px]" src="../assets/star.svg"/>
-                <p class="text-xs text-primary">{{rating}}</p>
+    <div class="col-span-4 h-max flex flex-col gap-3 text-fg rounded-xl bg-secondary">
+        <img class="w-full aspect-[3/4] rounded-xl place-self-center object-cover" :src="img"/>
+        <div class="flex flex-col gap-3 p-3 pb-0">
+            <div class="w-full flex flex-row justify-between items-center">
+                <p class="text-2xl text-primary font-bold">{{ price }} $</p>
+                <div class="w-max h-max flex flex-row gap-2">
+                    <img class="aspect-square w-[15px]" src="../assets/star.svg"/>
+                    <p class="text-xs text-primary">{{rating}}</p>
+                </div>
             </div>
+            <p class="text-lg">{{ title }}</p>
+            <p class="text-base">{{ description }}</p>
         </div>
-        <p class="text-lg">{{ title }}</p>
-        <p class="text-base">{{ description }}</p>
-        <p class="text-sm text-accent">{{ category }}</p>
-
+        <p class="text-lg text-accent text-center bg-primary rounded-b-xl font-bold h-[40px] content-center">{{ category }}</p>
     </div>
 </template>
 
