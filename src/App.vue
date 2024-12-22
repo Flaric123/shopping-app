@@ -1,11 +1,13 @@
 <script setup>
-  import Header from './components/Header.vue';
+  import GridContainer from './components/GridContainer.vue';
+import Header from './components/Header.vue';
 </script>
 
 <template>
-  <div>
-    <Header></Header>
-  </div>
+  <Header></Header>
+  <GridContainer>
+    
+  </GridContainer>
 </template>
 
 <style scoped>
