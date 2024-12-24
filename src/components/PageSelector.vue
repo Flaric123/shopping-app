@@ -1,5 +1,5 @@
 <template>
-        <div class="grid grid-cols-[repeat(7,minmax(0px,40px))] gap-5 w-full place-content-center cursor-pointer justify-items-center my-10">
+        <div class="grid grid-cols-[repeat(7,minmax(0px,40px))] gap-5 w-full place-content-center cursor-pointer justify-items-center pb-10 mt-10">
             <img class="w-full aspect-square bg-secondary rounded-xl transition-all
             hover:opacity-50 hover:scale-105
             active:bg-primary" src="../assets/arrow-left.svg" @click="goToPrev"/>
