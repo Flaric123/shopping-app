@@ -5,6 +5,7 @@
   import {onMounted, ref, defineAsyncComponent} from 'vue';
   import {container as modalContainer, openModal} from 'jenesius-vue-modal';
 import ShopItemPage from './components/ShopItemPage.vue';
+import PageSelector from './components/PageSelector.vue';
 
   const AsyncCard=defineAsyncComponent({
     loader:()=>import("./components/Card.vue" /* webpackChunkName: "card" */)
@@ -31,6 +32,10 @@ import ShopItemPage from './components/ShopItemPage.vue';
   const categoryChanged=async (e)=>{
     const response=await fetch(`https://fakestoreapi.com/products/category/${e.target.value}?limit=10`).then(res=>res.json())
     newItems.value=await response;
+  }
+
+  const newPageSelected=async (page)=>{
+    console.log(page)
   }
 
   onMounted(async ()=>{
@@ -60,6 +65,7 @@ import ShopItemPage from './components/ShopItemPage.vue';
       :category="item.category"
       :rating="item.rating"/>
     </GridContainer>
+    <PageSelector @on-page-selected="newPageSelected"/>
     <modal-container/>
 </template>
 
