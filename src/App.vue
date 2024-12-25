@@ -2,73 +2,33 @@
   import Card from './components/Card.vue';
   import GridContainer from './components/GridContainer.vue';
   import Header from './components/Header.vue';
-  import {onMounted, ref, defineAsyncComponent} from 'vue';
+  import {onMounted, ref, defineAsyncComponent, computed} from 'vue';
   import {container as modalContainer, openModal} from 'jenesius-vue-modal';
   import ShopItemPage from './components/ShopItemPage.vue';
   import PageSelector from './components/PageSelector.vue';
+  import { useLocalStorage } from '@vueuse/core';
+  import HomePage from './components/HomePage.vue';
+  import CartPage from './components/CartPage.vue';
 
-  const AsyncCard=defineAsyncComponent({
-    loader:()=>import("./components/Card.vue" /* webpackChunkName: "card" */)
+  const currentPath=ref(window.location.hash);
+  const routes={
+    '/': HomePage,
+    '/cart': CartPage
+  }
+
+  const currentView = computed(() => {
+    return routes[currentPath.value.slice(1) || '/']
   })
 
-  const AsyncShopItem=defineAsyncComponent({
-    loader:()=>import("./components/ShopItemPage.vue")
-  })
-
-  const newItems=ref();
-  const categories=ref();
-
-  const selectedCategory=ref()
-
-  const doSome=async (id) =>{
-    const response=await fetch(`https://fakestoreapi.com/products/${id}`).then(res=>res.json())
-    openModal(AsyncShopItem,{product:await response})
-  }
-
-  const addToCart=(id)=>{
-    console.log(`cart:${id}`);
-  }
-
-  const categoryChanged=async (e)=>{
-    const response=await fetch(`https://fakestoreapi.com/products/category/${e.target.value}?limit=10`).then(res=>res.json())
-    newItems.value=await response;
-  }
-
-  const newPageSelected=async (page)=>{
-    const response=await fetch(`https://fakestoreapi.com/products?limit=100`).then(res=>res.json())
-    const pagedResponse=await response.slice((page-1)*10,page*10)
-    newItems.value=pagedResponse
-  }
-
-  onMounted(async ()=>{
-    let response=await fetch('https://fakestoreapi.com/products?limit=10').then(res=>res.json())
-    newItems.value=await response;
-    response=await fetch('https://fakestoreapi.com/products/categories').then(res=>res.json())
-    categories.value=await response;
-  })
+  window.addEventListener('hashchange', () => {
+    currentPath.value = window.location.hash
+})
 </script>
 
 <template>
   <Header></Header>
-  <select class="w-full px-2 max-w-[1100px] h-[40px] rounded-md shadow-sm flex outline-none place-self-center mt-10"
-  v-model="selectedCategory" @change="categoryChanged">
-    <option disabled value="">Please select one</option>
-    <option v-for="(c,index) in categories" :value="c" :key="index" class="text-fg">{{ c }}</option>
-  </select>
-    <GridContainer class="mt-10">
-      <AsyncCard v-for="item in newItems" :key="item.id"
-      :onClick="(e)=>doSome(item.id)"
-      :addToCart="(e)=>addToCart(item.id)"
-      :id="item.id"
-      :img="item.image"
-      :title="item.title"
-      :price="item.price"
-      :description="item.description"
-      :category="item.category"
-      :rating="item.rating"/>
-    </GridContainer>
-    <modal-container/>
-    <PageSelector @on-page-selected="newPageSelected"/>
+  <component :is="currentView"/>
+  <modal-container/>
 </template>
 
 <style scoped>
