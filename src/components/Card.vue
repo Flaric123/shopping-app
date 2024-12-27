@@ -42,9 +42,9 @@
 
     const cartCounter=computed({
         get(){
-            const items=products.value.find(o=>o.id==id)
-            if (items)
-                return items.hasCart;
+            const prods=products.value.find(o=>o.id==id)
+            if (prods)
+                return prods.hasCart;
         },
         set(newValue){
            return products.value.find(o=>o.id==id).hasCart=newValue;

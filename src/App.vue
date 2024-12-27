@@ -31,14 +31,7 @@ import LoadingCard from './components/LoadingCard.vue';
 
 <template>
   <Header></Header>
-  <Suspense>
-    <template #default>
-      <component :is="currentView"/>
-    </template>
-    <template #fallback>
-      <Loading/>
-    </template>
-  </Suspense>
+    <component :is="currentView"/>
   <Suspense>
     <template #default>
       <modal-container />

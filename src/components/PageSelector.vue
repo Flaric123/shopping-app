@@ -38,7 +38,7 @@ const goToPrev=()=>{
     }
 }
 
-    const currentPage=ref(1);
+    const currentPage=defineModel();
     const maxPage=ref(10)
     const emit=defineEmits(['onPageSelected'])
 
