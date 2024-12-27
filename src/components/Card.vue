@@ -1,6 +1,8 @@
 <template>
-    <div class="col-span-4 h-full shadow-lg flex flex-col gap-3 text-fg rounded-xl bg-secondary relative">
-        <img class="aspect-square w-[30px] border border-dashed absolute inset-y-5 inset-x-5 bg-secondary rounded-md opacity-50 transition-all
+    <div class="col-span-4 h-full shadow-lg flex flex-col gap-3 text-fg rounded-xl bg-secondary relative
+    min-[500px]:max-md:col-span-6
+    min-[0px]:max-[500px]:col-span-full">
+        <img class="aspect-square w-[30px] border cursor-pointer border-dashed absolute inset-y-5 inset-x-5 bg-secondary rounded-md opacity-50 transition-all
         hover:opacity-100 hover:scale-110 hover:border-solid"
         v-show="!cartCounter"
         @click="addToCart"
@@ -11,7 +13,6 @@
         <PlusMinus v-show="cartCounter" @on-arrow-down="DeleteOnReachingOne"
         v-model="cartCounter"
         class="absolute inset-y-5 border border-fg border-opacity-20 inset-x-5"
-
         />
         <div class="flex flex-col gap-3 p-3 pb-0">
             <div class="w-full flex flex-row justify-between items-center">

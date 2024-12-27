@@ -18,32 +18,33 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import GridContainer from './GridContainer.vue';
 import PageButton from './PageButton.vue';
 
 const goToNext=()=>{
     if (currentPage.value!=maxPage.value){
         currentPage.value++;
-        emit('onPageSelected',currentPage.value)
     }
 }
 
 const goToNumber=(num)=>{
     currentPage.value=num;
-    emit('onPageSelected',currentPage.value)
 }
 
 const goToPrev=()=>{
     if (currentPage.value!=1){
         currentPage.value--;
-        emit('onPageSelected',currentPage.value)
     }
 }
 
     const currentPage=ref(1);
     const maxPage=ref(10)
     const emit=defineEmits(['onPageSelected'])
+
+    watch(currentPage,(newValue,oldValue)=>{
+        emit('onPageSelected',newValue)
+    })
 </script>
 
 <style lang="scss" scoped>

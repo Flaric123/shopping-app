@@ -10,6 +10,9 @@
   import HomePage from './components/HomePage.vue';
   import CartPage from './components/CartPage.vue';
 import PlusMinus from './components/PlusMinus.vue';
+  import { Suspense } from 'vue';
+import Loading from './components/Loading.vue';
+import LoadingCard from './components/LoadingCard.vue';
 
   const currentPath=ref(window.location.hash);
   const routes={
@@ -28,8 +31,22 @@ import PlusMinus from './components/PlusMinus.vue';
 
 <template>
   <Header></Header>
-  <component :is="currentView"/>
-  <modal-container/>
+  <Suspense>
+    <template #default>
+      <component :is="currentView"/>
+    </template>
+    <template #fallback>
+      <Loading/>
+    </template>
+  </Suspense>
+  <Suspense>
+    <template #default>
+      <modal-container />
+    </template>
+    <template #fallback>
+      <Loading/>
+    </template>
+  </Suspense>
 </template>
 
 <style scoped>
