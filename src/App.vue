@@ -9,13 +9,14 @@
   import { useLocalStorage } from '@vueuse/core';
   import HomePage from './components/HomePage.vue';
   import CartPage from './components/CartPage.vue';
+import PlusMinus from './components/PlusMinus.vue';
 
   const currentPath=ref(window.location.hash);
   const routes={
     '/': HomePage,
     '/cart': CartPage
   }
-
+  
   const currentView = computed(() => {
     return routes[currentPath.value.slice(1) || '/']
   })
