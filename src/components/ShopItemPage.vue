@@ -26,10 +26,9 @@
                 min-[0px]:max-md:row-start-9 min-[0px]:max-md:text-3xl">{{ product.price }} $</p>
                 <p class="text-lg absolute text-accent text-center w-full inset-y-full bg-primary rounded-b-xl font-bold h-[40px] content-center">{{ product.category }}</p>
         </GridContainer>
-        <div
-        v-else-if="productStatus==='pending'"
-        class="w-full bg-fg h-full bg-opacity-30 rounded-xl flex place-items-center">
-            <Loading class="w-full place-self-center self-center"/>
+        <div v-else-if="productStatus==='pending'"
+        class="w-full bg-fg h-full bg-opacity-30 rounded-xl flex">
+            <Loading class="w-full place-self-center self-center place-items-center"/>
         </div>
 </template>
 
